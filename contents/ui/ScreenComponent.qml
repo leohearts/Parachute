@@ -137,11 +137,19 @@ Item {
         }
     ]
 
-    PlasmaCore.WindowThumbnail {
+//     PlasmaCore.WindowThumbnail {
+//         id: desktopBackground
+//         anchors.fill: parent
+//         winId: 0
+//         opacity: mainWindow.configBlurBackground ? 0 : 1
+//     }
+    
+    Image {
         id: desktopBackground
-        anchors.fill: parent
-        visible: winId !== 0
-        opacity: mainWindow.configBlurBackground ? 0 : 1
+        source: "/home/leohearts/图片/壁纸/light/WhenThePromisedFlowerBlooms5.png.webp"
+        sourceSize: Qt.size(parent.width, parent.height)
+        smooth: false
+        visible: false
     }
 
     FastBlur {
@@ -149,7 +157,8 @@ Item {
         anchors.fill: parent
         source: desktopBackground
         radius: 64
-        visible: desktopBackground.winId !== 0 && mainWindow.configBlurBackground
+//         visible: desktopBackground.winId !== 0 && mainWindow.configBlurBackground
+        visible: true
         cached: true
     }
 
@@ -274,7 +283,8 @@ Item {
 
     Rectangle {
         id: milouBackground
-        color: PlasmaCore.Theme.viewBackgroundColor ? PlasmaCore.Theme.viewBackgroundColor : "#111111"
+//         color: PlasmaCore.Theme.viewBackgroundColor ? PlasmaCore.Theme.viewBackgroundColor : "#111111"
+        color: PlasmaCore.Theme.viewBackgroundColor
         opacity: 0.9
         visible: searchField.focus && searchField.text && mainWindow.configSearchMethod === Enums.SearchMethod.Krunner
         radius: 4
