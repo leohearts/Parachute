@@ -8,7 +8,7 @@ import org.kde.milou 0.3 as Milou
 Window {
     id: mainWindow
     flags: Qt.X11BypassWindowManagerHint
-    visible: true
+    visible: false
     color: "transparent"
     x: activated ? 0 : mainWindow.width * 2
     y: activated ? 0 : mainWindow.height * 2
@@ -117,8 +117,8 @@ Window {
 
             // Initial full hd dimensions to avoid division by zero on some internal calculations of ScreenComponent
             ScreenComponent {
-                width: 1920
-                height: 1080
+                width: workspace.displayWidth
+                height: workspace.displayHeight
             }
         }
     }
@@ -244,6 +244,7 @@ Window {
 
             avoidEmptyFrameTimer.start();
         } else {
+            mainWindow.visible = true;
             selectExternallySelectedClient();
             screensRepeater.itemAt(0).searchField.text = "";
             screensRepeater.itemAt(0).searchField.forceActiveFocus();
